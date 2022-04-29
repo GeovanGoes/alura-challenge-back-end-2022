@@ -12,8 +12,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	</head>
 	<body>
-	
-		<div class="top-bar">
+	<div class="top-bar">
 		  <div class="top-bar-left">
 		    <ul class="dropdown menu" data-dropdown-menu>
 		      <li>
@@ -29,42 +28,29 @@
 		  </div>
 		</div>
 		
-		
 		<div class="grid-container">
 	  		<h2 class="display-4">Siga bem banqueiro:</h2>
-		</div>
-		
-		
+		</div>	
 		<div class="grid-container">
-			<div th:if="${error}" class="alert callout" role="alert"><td th:text="${error} ?: ''"/></div>
-			<div th:if="${success}" class="success callout" role="alert"><td th:text="${success} ?: ''"/></div>			
-		</div>		
-		<div class="grid-container">
-			<form class="" method="post" th:action="@{/import}" enctype="multipart/form-data">
-				<div class="input-group">
-					<label for="exampleFileUpload" class="button">Upload File</label>
-					<input type="file" id="exampleFileUpload" class="show-for-sr" required accept=".csv" name="file">	
-					<button type="submit" class="submit success button">Enviar</button>
-				</div>
-	  		</form>
-		</div>
-		
-		
-		
-		<div class="grid-container">
-			<h4>Transações importadas</h4>
+			<h4>Usuários</h4>
 			  <!-- Table -->
+				<a class="button success" th:href="@{/usuarios/form-usuarios}">Novo</a>
 			  <table class="table">
 			  	<thead>
-			  		<th>DATA TRANSAÇÕES</th>
-			  		<th>DATA IMPORTAÇÃO</th>
-			  		<th>OPÇÕES</th>
+			  		<th>ID</th>
+			  		<th>Nome</th>
+			  		<th>Email</th>
+			  		<th>Ações</th>
 			  	</thead>
 			  	<tbody>
-			  		<tr data-th-each="item : ${list}">
-				        <td data-th-text="${#temporals.format(item.dataReferencia, 'dd-MM-yyyy')}">...</td>
-				        <td data-th-text="${#temporals.format(item.dataUpload, 'dd-MM-yyyy HH:mm')}">...</td>
-				        <td><a class="button" th:href="@{/import/detalhe(id=${item.id})}" type"button">Detalhes</a></td>
+			  		<tr data-th-each="item : ${usuarios}">
+			  			<td data-th-text="${item.id}">...</td>
+			  			<td data-th-text="${item.nome}">...</td>
+			  			<td data-th-text="${item.email}">...</td>
+			  			<td>
+			  				<a class="button" th:href="@{/usuarios/form-usuarios(id=${item.id})}" type"button">Editar</a>
+			  				<a type="button" th:href="@{/usuarios/deletar(id=${item.id})}"class="button alert">Excluir</a>
+			  			</td>
 				    </tr>
 			  	</tbody>
 			  </table>

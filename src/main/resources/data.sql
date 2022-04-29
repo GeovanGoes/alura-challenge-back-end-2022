@@ -1,0 +1,1 @@
+INSERT INTO USUARIO (id, nome, email, ativo, senha) VALUES (999999, 'Admin', 'admin@email.com.br', 'TRUE', '$2a$10$sKCbHxpBkwV/z.G6e/q5oe1wztJCCiZ05fpsSEjrRm8T/.XGqRBWG');

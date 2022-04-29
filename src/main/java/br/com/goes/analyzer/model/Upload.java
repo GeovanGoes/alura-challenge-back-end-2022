@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import lombok.Data;
 
@@ -23,8 +24,10 @@ public class Upload {
 	private Long id;
 	private LocalDate dataReferencia;
 	private LocalDateTime dataUpload;
-	@OneToMany(cascade = CascadeType.ALL, fetch =  FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.ALL, fetch =  FetchType.EAGER)
 	@JoinColumn(name = "upload_id")
 	private List<Transacao> transacoes;
+	@OneToOne(fetch = FetchType.EAGER)
+	private Usuario usuarioUpload;
 
 }

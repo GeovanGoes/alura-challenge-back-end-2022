@@ -16,9 +16,22 @@ spring:
       path: /h2-console
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true
     hibernate:
       ddl-auto: update
     properties:
       hibernate:
         format_sql: true
-        show_sql: true
+        show_sql: true`
+        
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: goes2sender@gmail.com
+    password: EIP:(1%0
+    properties:
+      mail: 
+        smtp: 
+          auth: true
+          starttls: 
+            enable: true

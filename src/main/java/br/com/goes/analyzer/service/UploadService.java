@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import br.com.goes.analyzer.exceptions.ValidationException;
 import br.com.goes.analyzer.model.Transacao;
 import br.com.goes.analyzer.model.Upload;
+import br.com.goes.analyzer.model.Usuario;
 import br.com.goes.analyzer.repository.UploadRepository;
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,7 +25,7 @@ public class UploadService {
 	@Autowired
 	private UploadRepository repository;
 	
-	public Upload salvar(MultipartFile file) throws ValidationException, IOException {
+	public Upload salvar(MultipartFile file, Usuario usuario) throws ValidationException, IOException {
 		List<Transacao> transacoes = new ArrayList<>();
 		String data = new String(file.getBytes());
 		
@@ -66,6 +67,7 @@ public class UploadService {
 		upload.setTransacoes(transacoes);
 		upload.setDataReferencia(date);
 		upload.setDataUpload(LocalDateTime.now());
+		upload.setUsuarioUpload(usuario);
 		Upload saved = repository.save(upload);
 		return saved;
 	}
@@ -74,5 +76,10 @@ public class UploadService {
 	
 	public List<Upload> list(){
 		return repository.findAllByDataReferenciaNotNullOrderByDataReferenciaDesc();
+	}
+	
+	
+	public Optional<Upload> findById(Long id) {
+		return repository.findById(id);
 	}
 }
