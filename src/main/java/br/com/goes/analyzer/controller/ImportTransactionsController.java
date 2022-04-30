@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.com.goes.analyzer.LoggedUser;
 import br.com.goes.analyzer.exceptions.ValidationException;
 import br.com.goes.analyzer.model.Upload;
 import br.com.goes.analyzer.model.Usuario;
 import br.com.goes.analyzer.service.UploadService;
+import br.com.goes.analyzer.utils.LoggedUser;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

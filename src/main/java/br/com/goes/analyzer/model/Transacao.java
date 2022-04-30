@@ -10,6 +10,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import lombok.Data;
 
 
@@ -21,16 +25,34 @@ public class Transacao {
 	@GeneratedValue
 	private Long id;
 	
+	@JsonProperty("origem")
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private ContaCorrente origem;
+	@JsonProperty("destino")
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private ContaCorrente destino;
 	
+	
 	private BigDecimal valorTransacao;
 	
+	@JsonProperty("data")
 	private LocalDateTime dataHoraTransacao;
 	
+	@JsonProperty("valor")
+	private void unpack(String valor) {
+		setValorTransacao(new BigDecimal(valor));
+	}
+	
 	public Transacao() {
+	}
+	
+	public Transacao(ContaCorrente origem, ContaCorrente destino, String valorTransacao,
+			LocalDateTime dataHoraTransacao) {
+		super();
+		this.origem = origem;
+		this.destino = destino;
+		this.valorTransacao = new BigDecimal(valorTransacao);
+		this.dataHoraTransacao = dataHoraTransacao;
 	}
 	
 	public Transacao(ContaCorrente origem, ContaCorrente destino, BigDecimal valorTransacao,

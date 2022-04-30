@@ -1,4 +1,4 @@
-package br.com.goes.analyzer.controller;
+package br.com.goes.analyzer.converters;
 
 public enum Columns {
 	

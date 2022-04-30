@@ -6,6 +6,8 @@ import javax.persistence.Id;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.Data;
 
 @Entity
@@ -16,8 +18,11 @@ public class ContaCorrente {
 	@Id
 	@GeneratedValue
 	private Long id;
+	@JsonProperty("banco")
 	private String banco;
+	@JsonProperty("agencia")
 	private String agencia;
+	@JsonProperty("conta")
 	private String conta;
 	
 	public ContaCorrente(String banco, String agencia, String conta) {

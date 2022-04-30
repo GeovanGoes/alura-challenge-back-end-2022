@@ -1,4 +1,4 @@
-package br.com.goes.analyzer;
+package br.com.goes.analyzer.utils;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 

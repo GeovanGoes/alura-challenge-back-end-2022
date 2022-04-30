@@ -10,6 +10,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+
 @EnableAutoConfiguration
 @SpringBootApplication
 public class AnalyzerApplication {
@@ -44,5 +46,4 @@ public class AnalyzerApplication {
 	    
 	    return mailSender;
 	}
-
 }

@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import br.com.goes.analyzer.LoggedUser;
 import br.com.goes.analyzer.exceptions.ValidationException;
 import br.com.goes.analyzer.model.Usuario;
 import br.com.goes.analyzer.service.UsuarioService;
+import br.com.goes.analyzer.utils.LoggedUser;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

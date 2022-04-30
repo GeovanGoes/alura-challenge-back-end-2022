@@ -3,7 +3,6 @@ package br.com.goes.analyzer.service;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -12,13 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import br.com.goes.analyzer.converters.TransacoesCsvConverter;
+import br.com.goes.analyzer.converters.TransacoesConverterChain;
 import br.com.goes.analyzer.exceptions.ValidationException;
-import br.com.goes.analyzer.model.ContaCorrente;
 import br.com.goes.analyzer.model.Transacao;
 import br.com.goes.analyzer.model.Upload;
 import br.com.goes.analyzer.model.Usuario;
-import br.com.goes.analyzer.repository.ContaCorrenteRepository;
 import br.com.goes.analyzer.repository.UploadRepository;
 import lombok.extern.slf4j.Slf4j;
 
@@ -33,10 +30,11 @@ public class UploadService {
 	private ContaCorrenteService contaCorrenteService;
 	
 	@Autowired
-	private TransacoesCsvConverter csvConverter; 
+	private TransacoesConverterChain chain; 
 	
 	public Upload salvar(MultipartFile file, Usuario usuario) throws ValidationException, IOException {
-		List<Transacao> transacoes = csvConverter.converter(file);
+		
+		List<Transacao> transacoes = chain.converter(file);
 		transacoes = validarTransacoes(transacoes);
 		LocalDate date = transacoes.stream().findFirst().get().getDataHoraTransacao().toLocalDate();
 		transacoes.forEach(item -> {
