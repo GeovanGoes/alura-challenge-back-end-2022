@@ -81,12 +81,12 @@
 		  		</thead>
 			  	<tbody>
 			  		<tr data-th-each="item : ${importacao.transacoes}">
-				        <td data-th-text="${item.bancoOrigem}">...</td>
-				        <td data-th-text="${item.agenciaOrigem}">...</td>
-				        <td data-th-text="${item.contaOrigem}">...</td>
-				        <td data-th-text="${item.bancoDestino}">...</td>
-				        <td data-th-text="${item.agenciaDestino}">...</td>
-				        <td data-th-text="${item.contaDestino}">...</td>
+				        <td data-th-text="${item.origem.banco}">...</td>
+				        <td data-th-text="${item.origem.agencia}">...</td>
+				        <td data-th-text="${item.origem.conta}">...</td>
+				        <td data-th-text="${item.destino.banco}">...</td>
+				        <td data-th-text="${item.destino.agencia}">...</td>
+				        <td data-th-text="${item.destino.conta}">...</td>
 				        <td>R$ <span data-th-text="${item.valorTransacao}"></span></td>
 				    </tr>
 			  	</tbody>
